@@ -200,14 +200,16 @@ h1 {
 /* ==========================================
    RESPONSIVO (MÓVILES)
    ========================================== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     h1 {
         font-size: 1.8rem;
     }
 
     .foto {
-        width: 180px;
-        height: 180px;
+        width: 90px;
+        height: auto;
+       margin: 0 auto;
+       display: block;
     }
 
     .carta {
