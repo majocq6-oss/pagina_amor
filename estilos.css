@@ -4,7 +4,7 @@
 :root {
     --bg-color: rgb(128, 0, 0);
     --card-bg: #ffffff;
-    --primary-color: #ffffff;
+    --primary-color: #000000;
     --text-color: #590d22;
     --secondary-text: #800f2f;
     --shadow-color: rgba(255, 77, 109, 0.15);
