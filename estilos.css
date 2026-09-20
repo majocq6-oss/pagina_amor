@@ -59,9 +59,9 @@ h1 {
    FOTO PRINCIPAL (ADAPTADA)
    ========================================== */
 .foto {
-    width: 100%;             
-    max-width: 500px;        
-    height: 70vh;            /* Usa el 70% del alto de la pantalla en lugar de un valor fijo en px */
+    width: 95%;             
+    max-width: 650px;        
+    height: auto;            /* Usa el 70% del alto de la pantalla en lugar de un valor fijo en px */
     max-height: 600px;       /* Evita que se vuelva ridículamente gigante en pantallas grandes */
     object-fit: cover;       
     object-position: center; 
