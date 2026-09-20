@@ -2,9 +2,9 @@
    CONFIGURACIÓN Y VARIABLES GLOBALES
    ========================================== */
 :root {
-    --bg-color: #fff0f3;
+    --bg-color: #800000;
     --card-bg: #ffffff;
-    --primary-color: #ff4d6d;
+    --primary-color: #ffffff;
     --text-color: #590d22;
     --secondary-text: #800f2f;
     --shadow-color: rgba(255, 77, 109, 0.15);
