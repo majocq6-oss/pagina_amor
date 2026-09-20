@@ -22,24 +22,29 @@ body {
     color: var(--text-color);
     font-family: var(--font-family);
     min-height: 100vh;
+    /* Cambiado a min-height-dynamic para un mejor soporte en iOS (evita saltos por la barra de navegación) */
+    min-height: -webkit-fill-available; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px;
+    padding: 20px 15px; /* Un poco más de padding lateral para móviles */
     overflow-x: hidden;
+}
+
+html {
+    /* Soluciona el problema del 100vh en Safari de iPhone */
+    height: -webkit-fill-available; 
 }
 
 /* ==========================================
    CONTENEDOR PRINCIPAL Y ANIMACIÓN
    ========================================== */
 .contenedor {
-    max-width: 800px; /* Aumenta este valor si quieres que la carta y las fotos sean más anchas */
-    width: 90%;
+    max-width: 800px; 
+    width: 100%; /* Cambiado a 100% para aprovechar el espacio en móviles pequeños */
     margin: 0 auto;
     text-align: center;
 }
-
-
 
 /* Título */
 h1 {
@@ -51,172 +56,42 @@ h1 {
 }
 
 /* ==========================================
-   FOTO PRINCIPAL
+   FOTO PRINCIPAL (ADAPTADA)
    ========================================== */
 .foto {
-    width: 100%;             /* Usa todo el ancho disponible del contenedor */
-    max-width: 500px;        /* Aumenta el tamaño máximo de la foto (antes 220px) */
-    height: 700px;           /* Aumenta la altura de la imagen */
-    object-fit: cover;       /* Evita que la foto se estire o distorsione */
-    object-position: center; /* Centra el encuadre de la foto */
-    border-radius: 1px;     /* Bordes redondeados elegantes */
+    width: 100%;             
+    max-width: 500px;        
+    height: 70vh;            /* Usa el 70% del alto de la pantalla en lugar de un valor fijo en px */
+    max-height: 600px;       /* Evita que se vuelva ridículamente gigante en pantallas grandes */
+    object-fit: cover;       
+    object-position: center; 
+    border-radius: 4px;      /* Un toque más de redondeado se ve mejor en pantallas Retina de iPhone */
     border: 4px solid #ffffff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    margin: 0 auto 60px auto;
+    margin: 0 auto 30px auto; /* Reducido el margen inferior en móviles para que no quede tanto hueco */
     display: block;
-
+    transition: transform 0.3s ease; /* Transición suave para el efecto hover */
 }
 
-.foto:hover {
-    transform: scale(1.05) rotate(2deg);
-}
-
-/* ==========================================
-   CARTA DETALLE
-   ========================================== */
-.carta {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    margin-bottom: 35px;
-    line-height: 1.6;
-    text-align: left;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Aparece con suave deslizamiento hacia arriba */
-    animation: slideUp 1s ease-out 0.3s both;
-}
-
-.carta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.25);
-}
-
-.carta h2 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-.carta p {
-    color: var(--secondary-text);
-    margin-bottom: 12px;
-    font-size: 1.05rem;
-}
-
-.carta p:last-child {
-    margin-bottom: 0;
-    text-align: right;
-    font-weight: bold;
-}
-
-/* ==========================================
-   GALERÍA DE FOTOS
-   ========================================== */
-
-.galeria {
-    display: grid;
-    /* Ajusta automáticamente las columnas con un ancho mínimo cómodo de 220px */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 25px;
-}
-
-.galeria img {
-    width: 100%;
-    height: 280px;            /* Altura suficiente para mostrar bien las fotos */
-    object-fit: cover;        /* Mantiene la proporción sin estirar la imagen */
-    object-position: center;  /* Mantiene los rostros bien centrados */
-    border-radius: 16px;
-    border: 3px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-}
-
-/* Efecto al pasar el mouse por encima */
-.galeria img:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-}
-
-
-/* ==========================================
-   KEYFRAMES (ANIMACIONES DE MOVIMIENTO)
-   ========================================== */
-
-/* Entrada suave */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Deslizar hacia arriba */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Efecto flotante constante */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Rebote suave inicial */
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
+/* Efecto hover modificado para evitar problemas táctiles en celulares */
+@media (hover: hover) {
+    .foto:hover {
+        transform: scale(1.03) rotate(2deg);
     }
 }
 
 /* ==========================================
-   RESPONSIVO (MÓVILES)
+   MEDIA QUERY PARA PANTALLAS PEQUEÑAS (MÓVILES)
    ========================================== */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Achica un poco el título en pantallas muy chicas para que no se corte */
+        margin-bottom: 15px;
     }
-
+    
     .foto {
-        width: 90px;
-        height: auto;
-       margin: 0 auto;
-       display: block;
-    }
-
-    .carta {
-        padding: 20px;
-    }
-
-    .galeria {
-        grid-template-columns: repeat(2, 1fr);
+        height: 50vh; /* En celulares muy pequeños, baja el alto de la foto al 50% de la pantalla */
+        margin-bottom: 20px;
     }
 }
+
