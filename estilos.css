@@ -90,7 +90,7 @@ h1 {
     }
     
     .foto {
-        height: 50vh; /* En celulares muy pequeños, baja el alto de la foto al 50% de la pantalla */
+        height: 100vh; /* En celulares muy pequeños, baja el alto de la foto al 50% de la pantalla */
         margin-bottom: 20px;
     }
 }
