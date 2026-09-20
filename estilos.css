@@ -2,7 +2,7 @@
    CONFIGURACIÓN Y VARIABLES GLOBALES
    ========================================== */
 :root {
-    --bg-color: #FFF8DC;
+    --bg-color: #fff0f3;
     --card-bg: #ffffff;
     --primary-color: #ff4d6d;
     --text-color: #590d22;
@@ -33,13 +33,11 @@ body {
    CONTENEDOR PRINCIPAL Y ANIMACIÓN
    ========================================== */
 .contenedor {
-    max-width: 800px; /* Aumenta este valor si quieres que la carta y las fotos sean más anchas */
-    width: 90%;
-    margin: 0 auto;
+    max-width: 650px;
+    width: 100%;
     text-align: center;
+    animation: fadeIn 1.2s ease-out forwards;
 }
-
-
 
 /* Título */
 h1 {
@@ -47,24 +45,22 @@ h1 {
     color: var(--primary-color);
     margin-bottom: 25px;
     animation: bounceIn 1.5s ease-out;
-    font-family: "Times New Roman", Times, cursive;
 }
 
 /* ==========================================
    FOTO PRINCIPAL
    ========================================== */
 .foto {
-    width: 100%;             /* Usa todo el ancho disponible del contenedor */
-    max-width: 500px;        /* Aumenta el tamaño máximo de la foto (antes 220px) */
-    height: 700px;           /* Aumenta la altura de la imagen */
-    object-fit: cover;       /* Evita que la foto se estire o distorsione */
-    object-position: center; /* Centra el encuadre de la foto */
-    border-radius: 1px;     /* Bordes redondeados elegantes */
-    border: 4px solid #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    margin: 0 auto 60px auto;
-    display: block;
-
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    margin-bottom: 30px;
+    /* Movimiento flotante continuo */
+    animation: float 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
 }
 
 .foto:hover {
@@ -115,34 +111,31 @@ h1 {
 /* ==========================================
    GALERÍA DE FOTOS
    ========================================== */
-
 .galeria {
     display: grid;
-    /* Ajusta automáticamente las columnas con un ancho mínimo cómodo de 220px */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
 }
 
 .galeria img {
     width: 100%;
-    height: 280px;            /* Altura suficiente para mostrar bien las fotos */
-    object-fit: cover;        /* Mantiene la proporción sin estirar la imagen */
-    object-position: center;  /* Mantiene los rostros bien centrados */
-    border-radius: 16px;
-    border: 3px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    /* Animación de entrada secuencial */
+    animation: fadeIn 1s ease-out both;
 }
 
-/* Efecto al pasar el mouse por encima */
+/* Efecto al interactuar con las imágenes de la galería */
 .galeria img:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    z-index: 2;
 }
-
 
 /* ==========================================
    KEYFRAMES (ANIMACIONES DE MOVIMIENTO)
@@ -218,3 +211,52 @@ h1 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+.foto {
+    width: 100%;             /* Usa todo el ancho disponible del contenedor */
+    max-width: 450px;        /* Aumenta el tamaño máximo de la foto (antes 220px) */
+    height: 380px;           /* Aumenta la altura de la imagen */
+    object-fit: cover;       /* Evita que la foto se estire o distorsione */
+    object-position: center; /* Centra el encuadre de la foto */
+    border-radius: 20px;     /* Bordes redondeados elegantes */
+    border: 4px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+.contenedor {
+    max-width: 800px; /* Aumenta este valor si quieres que la carta y las fotos sean más anchas */
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+/* ==========================================
+   GALERÍA DE FOTOS (OPTIMIZADA)
+   ========================================== */
+.galeria {
+    display: grid;
+    /* Ajusta automáticamente las columnas con un ancho mínimo cómodo de 220px */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.galeria img {
+    width: 100%;
+    height: 280px;            /* Altura suficiente para mostrar bien las fotos */
+    object-fit: cover;        /* Mantiene la proporción sin estirar la imagen */
+    object-position: center;  /* Mantiene los rostros bien centrados */
+    border-radius: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse por encima */
+.galeria img:hover {
+    transform: translateY(-8px) scale(1.03);
+    
